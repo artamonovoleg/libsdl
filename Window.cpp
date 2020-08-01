@@ -18,8 +18,8 @@ void sdl::Window::initWindow( int width, int height )
 
         _window = SDL_CreateWindow( "SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, SDL_WINDOW_SHOWN );
         _renderer = SDL_CreateRenderer( _window, -1, SDL_RENDERER_ACCELERATED );
-        sdl::Texture::setTexture( sdl::Texture::createTexture() );
-        sdl::Surface::setSurface( sdl::Surface::createSurface() );
+        sdl::Texture::setTexture( sdl::Texture::createTexture( width, height ) );
+        sdl::Surface::setSurface( sdl::Surface::createSurface( width, height ) );
         isCreated = true;
     }
     else
