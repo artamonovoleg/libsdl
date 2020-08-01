@@ -1,5 +1,5 @@
 #include "Events.hpp"
-
+#include <iostream>
 bool sdl::Events::_keys[COUNT_KEYS] = { false };
 SDL_Event sdl::Events::_event;
 
@@ -22,6 +22,8 @@ void sdl::Events::handleInput( void )
             }
         }
     }
+
+    
 }
 
 void sdl::Events::getMousePosition( int * x, int * y )

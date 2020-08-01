@@ -14,7 +14,8 @@ namespace sdl
         public:
             static void handleInput ( void );
             static void getMousePosition( int * x, int * y );
-	    static bool InputGetKey ( SDL_KeyCode key);
+            static bool InputGetKey ( SDL_KeyCode key);
+            static bool InputGetButton( int button );
     };
 }
 
