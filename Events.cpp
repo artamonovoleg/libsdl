@@ -1,6 +1,8 @@
 #include "Events.hpp"
 #include <iostream>
 bool sdl::Events::_keys[COUNT_KEYS] = { false };
+bool sdl::Events::_buttons[6] = { false };
+
 SDL_Event sdl::Events::_event;
 
 void sdl::Events::handleInput( void )
@@ -21,9 +23,26 @@ void sdl::Events::handleInput( void )
                     break;
             }
         }
+
+        switch (_event.type)
+        {
+            case SDL_MOUSEBUTTONDOWN:
+                _buttons[_event.button.button] = true;
+                break;
+            case SDL_MOUSEBUTTONUP:
+                _buttons[_event.button.button] = false;
+                break;
+            default:
+                break;
+        }
     }
 
     
+}
+
+bool sdl::Events::InputGetButton( int button )
+{
+    return _buttons[button];
 }
 
 void sdl::Events::getMousePosition( int * x, int * y )

@@ -10,6 +10,7 @@ namespace sdl
     {
         private:
             static bool _keys[COUNT_KEYS];
+            static bool _buttons[6];
             static SDL_Event _event;
         public:
             static void handleInput ( void );
