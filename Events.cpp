@@ -24,6 +24,11 @@ void sdl::Events::handleInput( void )
     }
 }
 
+void sdl::Events::getMousePosition( int * x, int * y )
+{
+    SDL_GetMouseState(x, y);
+}
+
 bool sdl::Events::InputGetKey( SDL_KeyCode key )
 {
     return _keys[key];
