@@ -1,7 +1,7 @@
 #ifndef DRAW_HPP
 #define DRAW_HPP
 
-#include "mysdl.hpp"
+#include "libsdl.hpp"
 
 struct point
 {

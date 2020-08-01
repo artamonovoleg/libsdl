@@ -1,7 +1,7 @@
 #ifndef TEXTURE_HPP
 #define TEXTURE_HPP
 
-#include "mysdl.hpp"
+#include "libsdl.hpp"
 
 namespace sdl
 {

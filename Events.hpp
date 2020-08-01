@@ -1,7 +1,7 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 
-#include "mysdl.hpp"
+#include "libsdl.hpp"
 
 #define COUNT_KEYS 332
 namespace sdl

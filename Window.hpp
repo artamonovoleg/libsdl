@@ -1,6 +1,6 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
-#include "mysdl.hpp"
+#include "libsdl.hpp"
 
 namespace sdl
 {

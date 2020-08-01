@@ -1,7 +1,7 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
-#include "mysdl.hpp"
+#include "libsdl.hpp"
 
 namespace sdl
 {
