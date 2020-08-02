@@ -9,13 +9,15 @@ namespace sdl
         public:
             static void initWindow( int width, int height );
             static void Update( void );
+            
+            // Setters
+            static void setBgColor( Uint32 color );
             // Getters
             static SDL_Window * getWindow( void ) { return _window; };
             static SDL_Renderer * getRenderer( void ) { return _renderer; };
             static int getWidth( void ) { return _width; };
             static int getHeight( void ) { return _height; };
 
-            static Uint32 _bgcolor;
         private:
             Window() = default;
 
@@ -28,6 +30,8 @@ namespace sdl
             // Window parameters
             static int _width;
             static int _height;
+            static Uint32 _bgcolor;
+
     };
 }
 

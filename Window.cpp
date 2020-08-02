@@ -9,7 +9,7 @@ SDL_Renderer * sdl::Window::_renderer = nullptr;
 int sdl::Window::_width = 0;
 int sdl::Window::_height = 0;
 
-Uint32 sdl::Window::_bgcolor = 0xFFFFFF;
+Uint32 sdl::Window::_bgcolor = 0x000000;
 
 void sdl::Window::initWindow( int width, int height )
 {
@@ -42,4 +42,9 @@ void sdl::Window::Update( void )
     SDL_FillRect(sdl::Surface::getSurface(), NULL, _bgcolor);
     // Input
     sdl::Events::handleInput();
+}
+
+void sdl::Window::setBgColor( Uint32 color )
+{
+    _bgcolor = color;
 }
