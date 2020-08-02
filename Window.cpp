@@ -9,6 +9,8 @@ SDL_Renderer * sdl::Window::_renderer = nullptr;
 int sdl::Window::_width = 0;
 int sdl::Window::_height = 0;
 
+Uint32 sdl::Window::_bgcolor = 0xFFFFFF;
+
 void sdl::Window::initWindow( int width, int height )
 {
     if (isCreated == false)
@@ -36,6 +38,8 @@ void sdl::Window::Update( void )
     SDL_RenderCopy(_renderer, sdl::Texture::getTexture(), NULL, NULL);
     SDL_RenderPresent(_renderer);
 
+    // Surface clear
+    SDL_FillRect(sdl::Surface::getSurface(), NULL, _bgcolor);
     // Input
     sdl::Events::handleInput();
 }

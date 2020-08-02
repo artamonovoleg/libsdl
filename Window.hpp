@@ -13,7 +13,9 @@ namespace sdl
             static SDL_Window * getWindow( void ) { return _window; };
             static SDL_Renderer * getRenderer( void ) { return _renderer; };
             static int getWidth( void ) { return _width; };
-            static int getHeight( void ) { return _height; }; 
+            static int getHeight( void ) { return _height; };
+
+            static Uint32 _bgcolor;
         private:
             Window() = default;
 
