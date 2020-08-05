@@ -1,5 +1,29 @@
 #include "Draw.hpp"
 
+float sdl::Draw::lerp( float a, float b, float t )
+{
+    return ( a + t * ( b - a ) );
+}
+
+float sdl::Draw::r_lerp( float a, float b, float t)
+{
+    float dist = b - a;
+    if ( dist < 0 )
+        dist *= (-1);
+    
+    return ( (100 * t) / ( a - b ) );
+}
+
+float mixColor( Uint32 color1, Uint32 color2, int percent )
+{
+
+}
+
+float getColor( point p1, point p2 )
+{
+
+}
+
 void sdl::Draw::drawPoint( point p )
 {
     if (p.pos.x >= 0 && p.pos.x < sdl::Surface::getWidth() && p.pos.y >= 0 && p.pos.y < sdl::Surface::getHeight())
