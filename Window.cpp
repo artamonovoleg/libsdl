@@ -48,3 +48,12 @@ void sdl::Window::setBgColor( Uint32 color )
 {
     _bgcolor = color;
 }
+
+void sdl::Window::deinitWindow( void )
+{
+    // SDL_FreeSurface( sdl::Surface::getSurface() );
+    // SDL_DestroyTexture( sdl::Texture::getTexture() );
+    // SDL_DestroyRenderer( _renderer );
+    SDL_DestroyWindow( _window );
+    SDL_Quit();
+}

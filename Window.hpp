@@ -18,6 +18,7 @@ namespace sdl
             static int getWidth( void ) { return _width; };
             static int getHeight( void ) { return _height; };
 
+            static void deinitWindow( void );
         private:
             Window() = default;
 
