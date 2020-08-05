@@ -2,7 +2,7 @@
 
 void sdl::Draw::drawPoint( point p )
 {
-    if (p.pos.x >= 0 && p.pos.x < sdl::Surface::getWidth() && p.pos.y >= 0 && p.pos.y <= sdl::Surface::getHeight())
+    if (p.pos.x >= 0 && p.pos.x < sdl::Surface::getWidth() && p.pos.y >= 0 && p.pos.y < sdl::Surface::getHeight())
         *(((Uint32 *)sdl::Surface::getSurface() -> pixels) + (int(p.pos.x) + int(p.pos.y)* sdl::Surface::getSurface() -> w)) = p.color;
 }
 

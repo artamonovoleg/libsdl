@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -c -lSDL2 -I. 
+CFLAGS = -g -Wall -c -lSDL2 -I.
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 OUTPUTFILE = libsdl.a 
