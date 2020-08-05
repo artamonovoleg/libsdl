@@ -21,7 +21,7 @@ float mixColor( Uint32 color1, Uint32 color2, int percent )
 
 float getColor( point p1, point p2 )
 {
-
+    return 0;
 }
 
 void sdl::Draw::drawPoint( point p )
