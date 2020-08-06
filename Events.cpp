@@ -36,8 +36,6 @@ void sdl::Events::handleInput( void )
                 break;
         }
     }
-
-    
 }
 
 bool sdl::Events::InputGetButton( int button )

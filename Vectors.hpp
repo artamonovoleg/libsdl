@@ -22,6 +22,7 @@ typedef vec <2, float> vec2f;
 typedef vec <3, float> vec3f;
 typedef vec <2, int> vec2i;
 typedef vec <3, int> vec3i;
+typedef vec <4, int> vec4i;
 
 template <typename T>
 struct vec<2, T>
@@ -43,6 +44,14 @@ struct vec<3, T>
     const T& operator[](const size_t i) const { assert(i<3); return i<=0 ? x : (1==i ? y : z); }
     float norm() { return std::sqrt(x*x+y*y+z*z); }
     vec<3,T> & normalize(T l=1) { *this = (*this)*(l/norm()); return *this; }
+};
+
+template <typename T>
+struct vec <4, T>
+{
+    T x, y, z, w;
+    vec() : x(T()), y(T()), z(T()), w(T()) {}
+    vec(T X, T Y, T Z, T W) : x(X), y(Y), z(Z), w(W) {}
 };
 
 template <size_t size, typename T> vec <size,T> operator-(vec<size, T> lhs, const vec<size,T> &rhs)

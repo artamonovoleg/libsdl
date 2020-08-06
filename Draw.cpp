@@ -6,22 +6,31 @@ float sdl::Draw::lerp( float a, float b, float t )
 }
 
 float sdl::Draw::r_lerp( float a, float b, float t)
+{   
+    return ( ( t - a ) / ( b - a ) );
+}
+
+Uint32 sdl::Draw::mixColor( Uint32 color1, Uint32 color2, int percent )
 {
-    float dist = b - a;
-    if ( dist < 0 )
-        dist *= (-1);
+    vec3i rgb1;
+    vec3i rgb2;
+    vec3i retColor;
+    Uint32 ret;
+
+    rgb1.x = color1 >> 16;
+    rgb1.y = ( color1 >> 8 ) & 0xff;
+    rgb1.z = color1 & 0xff;
+
+    rgb2.x = color2 >> 16;
+    rgb2.y = ( color2 >> 8 ) & 0xff;
+    rgb2.z = color2 & 0xff;
+
+    retColor.x = (int)((1 - percent) * rgb1.x + percent * rgb2.x);
+    retColor.y = (int)((1 - percent) * rgb1.y + percent * rgb2.y);
+    retColor.z = (int)((1 - percent) * rgb1.z + percent * rgb2.z);
+    ret = ( retColor.x << 16 | retColor.y << 8 | retColor.z );
     
-    return ( (100 * t) / ( a - b ) );
-}
-
-float mixColor( Uint32 color1, Uint32 color2, int percent )
-{
-
-}
-
-float getColor( point p1, point p2 )
-{
-    return 0;
+    return ret;
 }
 
 void sdl::Draw::drawPoint( point p )
@@ -60,7 +69,7 @@ void sdl::Draw::drawLine( point p0, point p1 )
         }
         p.pos.x = x;
         p.pos.y = y;
-        p.color = p1.color;
+        p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
         drawPoint(p);
         for (int i = 0; x < xe; i++)
         {
@@ -75,9 +84,11 @@ void sdl::Draw::drawLine( point p0, point p1 )
                     y--;
                 px = px + 2 * (dy1 - dx1);
             }
-                      p.pos.x = x;
+            
+            p.pos.x = x;
             p.pos.y = y;
-            p.color = p1.color;
+            // p.color = p1.color;
+            p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
             drawPoint(p);
         }
     }
@@ -97,7 +108,8 @@ void sdl::Draw::drawLine( point p0, point p1 )
         }
         p.pos.x = x;
         p.pos.y = y;
-        p.color = p1.color;
+        // p.color = p1.color;
+        p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
         drawPoint(p);
         for (int i = 0; y < ye; i++)
         {
@@ -114,7 +126,8 @@ void sdl::Draw::drawLine( point p0, point p1 )
             }
             p.pos.x = x;
             p.pos.y = y;
-            p.color = p1.color;
+            // p.color = p1.color;
+            p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
             drawPoint(p);
         }
     }
