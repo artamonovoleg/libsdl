@@ -1,5 +1,5 @@
 # libsdl
-[![C/C++ CI](https://github.com/artamonovoleg/libsdl/workflows/C/MacOS/badge.svg?branch=master)](https://github.com/artamonovoleg/libsdl/actions)
+[![C/C++ CI](https://github.com/artamonovoleg/libsdl/workflows/MacOS/badge.svg?branch=master)](https://github.com/artamonovoleg/libsdl/actions)
 ## Usage:
 
 
