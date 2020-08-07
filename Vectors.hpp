@@ -56,27 +56,42 @@ struct vec <4, T>
 
 template <size_t size, typename T> vec <size,T> operator-(vec<size, T> lhs, const vec<size,T> &rhs)
 {
-    for (size_t i = size; i--; lhs[i] -= rhs[i]);
+    for (size_t i = size; i >= 0; i-- )
+    {
+        lhs[i] -= rhs[i];
+    }
+
     return lhs;
 };
 
 template <size_t size, typename T> vec <size,T> operator+(vec<size, T> lhs, const vec<size,T> &rhs)
 {
-    for (size_t i = size; i--; lhs[i] += rhs[i]);
-        return lhs;
+    for ( size_t i = size; i >= 0; i-- )
+    {
+        lhs[i] += rhs[i];
+    }
+
+    return lhs;
 };
 
 template<size_t DIM,typename T> T operator*(const vec<DIM,T>& lhs, const vec<DIM,T>& rhs)
 {
     T ret = T();
-    for (size_t i=DIM; i--; ret+=lhs[i]*rhs[i]);
+    for ( size_t i=DIM; i >= 0; i-- )
+    {
+        ret+=lhs[i]*rhs[i];
+    }
+
     return ret;
 }
 
 template <size_t size, typename T, typename U> vec <size,T> operator*(const vec<size, T> &lhs, const U &rhs)
 {
     vec <size, T> ret;
-    for (size_t i = size; i--; ret[i] = lhs[i] * rhs);
+    for ( size_t i = size; i >= 0; i-- )
+    {
+        ret[i] = lhs[i] * rhs;
+    }
         return ret;
 };
 
