@@ -20,3 +20,14 @@ jobs:
         sudo apt-get install libsdl2-dev
     - name: make
       run: make
+  test_MacOS:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: install_dependencies
+      run: | 
+        brew install SDL2
+    - name: make
+      run: make
