@@ -1,5 +1,5 @@
 CC = clang++
-CFLAGS = -std=c++11 -stdlib=libc++ -g -c -Wall
+CFLAGS = -std=c++11 -g -c -Wall
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 OUTPUTFILE = libsdl.a 
