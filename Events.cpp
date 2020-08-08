@@ -2,6 +2,8 @@
 #include <iostream>
 bool sdl::Events::_keys[COUNT_KEYS] = { false };
 bool sdl::Events::_buttons[COUNT_BUTTONS] = { false };
+bool sdl::Events::mouseScrollDown = false;
+bool sdl::Events::mouseScrollUp = false;
 
 SDL_Event sdl::Events::_event;
 
@@ -9,6 +11,7 @@ void sdl::Events::handleInput( void )
 {
     while (SDL_PollEvent(&_event))
     {
+        // Keyboard
         if (_event.key.keysym.sym < COUNT_KEYS)
         {
             switch (_event.type)
@@ -24,6 +27,7 @@ void sdl::Events::handleInput( void )
             }
         }
 
+        // Mouse
         switch (_event.type)
         {
             case SDL_MOUSEBUTTONDOWN:
@@ -31,6 +35,10 @@ void sdl::Events::handleInput( void )
                 break;
             case SDL_MOUSEBUTTONUP:
                 _buttons[_event.button.button] = false;
+                break;
+            case SDL_MOUSEWHEEL:
+                mouseScrollUp = _event.wheel.y > 0;
+                mouseScrollDown = _event.wheel.y < 0;
                 break;
             default:
                 break;

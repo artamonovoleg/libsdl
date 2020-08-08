@@ -50,22 +50,15 @@ struct vec <T, 4>
     T& operator [] (int i)  { assert(i < 4); return (i > 2) ? w : (i > 1) ? z : (i > 0) ? y : x; };
 };
 
-template <typename T>
-std::ostream& operator << (std::ostream& out, vec<T, 2> v)
+template <typename T, size_t size>
+std::ostream& operator << (std::ostream& out, vec<T, size> v)
 {
-    return out << '(' << v.x << ',' << v.y << ')';
-}
-
-template <typename T>
-std::ostream& operator << (std::ostream& out, vec<T, 3> v)
-{
-    return out << '(' << v.x << ',' << v.y << ',' << v.z << ')';
-}
-
-template <typename T>
-std::ostream& operator << (std::ostream& out, vec<T, 4> v)
-{
-    return out << '(' << v.x << ',' << v.y << ',' << v.z << ',' << v.w << ')';
+    out << '(';
+    for (int i = 0; i < size; i++)
+    {
+        out << v[i] << ',';
+    }
+    out << ')';
 }
 
 template <typename T, size_t size> 

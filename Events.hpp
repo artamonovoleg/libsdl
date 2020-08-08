@@ -20,6 +20,9 @@ namespace sdl
             static bool InputGetButton( int button );
             static bool InputGetButtonDown ( int button );
             static bool InputGetButtonUp ( int button );
+
+            static bool mouseScrollUp;
+            static bool mouseScrollDown;
     };
 }
 
