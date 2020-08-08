@@ -13,8 +13,6 @@ namespace sdl
             static bool _keys[COUNT_KEYS];
             static bool _buttons[COUNT_BUTTONS];
             static SDL_Event _event;
-            static float mouseWheelY;
-
             static void HandleScroll( void );
         public:
             static void handleInput ( void );

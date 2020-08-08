@@ -4,8 +4,6 @@ bool sdl::Events::_keys[COUNT_KEYS] = { false };
 bool sdl::Events::_buttons[COUNT_BUTTONS] = { false };
 bool sdl::Events::mouseScrollDown = false;
 bool sdl::Events::mouseScrollUp = false;
-float sdl::Events::mouseWheelY;
-
 SDL_Event sdl::Events::_event;
 
 void sdl::Events::handleInput( void )
@@ -38,15 +36,24 @@ void sdl::Events::handleInput( void )
                 _buttons[_event.button.button] = false;
                 break;
             case SDL_MOUSEWHEEL:
-                mouseWheelY = _event.wheel.y;
-                mouseScrollUp = _event.wheel.y > 0;
-                mouseScrollDown = _event.wheel.y < 0;
+                if(_event.wheel.y > 0) // scroll up
+                {
+                    mouseScrollUp = true;
+                    mouseScrollDown = false;
+                }
+                else if(_event.wheel.y < 0) // scroll down
+                {
+                    mouseScrollDown = true;
+                    mouseScrollUp = false;
+                }
                 break;
             default:
+                mouseScrollDown = false;
+                mouseScrollUp = false;
                 break;
         }
 
-        HandleScroll();
+
     }
 
 }
@@ -98,12 +105,4 @@ bool sdl::Events::InputGetButtonUp ( int button )
     last_state [button] = current_state;
 
     return isReleased;
-}
-
-void sdl::Events::HandleScroll( void )
-{
-    static float last_mouseY;
-    mouseScrollUp = mouseWheelY > last_mouseY;
-    mouseScrollDown = mouseWheelY < last_mouseY;
-    last_mouseY = mouseWheelY;
 }
