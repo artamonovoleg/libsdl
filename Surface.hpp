@@ -8,7 +8,7 @@ namespace sdl
     class Surface
     {
         private:
-            Surface() = default;
+            Surface(){};
             static Uint32 rmask, gmask, bmask, amask;
             static SDL_Surface * _surface;
             static int _width;

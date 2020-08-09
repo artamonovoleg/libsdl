@@ -8,7 +8,7 @@ namespace sdl
     class Texture
     {
         private:
-            Texture() = default;
+            Texture(){};
             static SDL_Texture * _texture;
         public:
             // Default texture creator. Take window size as parameters

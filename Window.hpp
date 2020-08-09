@@ -20,7 +20,7 @@ namespace sdl
 
             static void deinitWindow( void );
         private:
-            Window() = default;
+            Window(){};
 
             // SDL values
             static SDL_Window * _window;

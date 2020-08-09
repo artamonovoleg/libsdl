@@ -13,7 +13,6 @@ namespace sdl
             static bool _keys[COUNT_KEYS];
             static bool _buttons[COUNT_BUTTONS];
             static SDL_Event _event;
-
         public:
             static void handleInput ( void );
             static void getMousePosition( int * x, int * y );
