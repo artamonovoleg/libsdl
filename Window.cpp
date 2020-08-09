@@ -18,7 +18,7 @@ void sdl::Window::initWindow( int width, int height )
         _width = width;
         _height = height;
 
-        _window = SDL_CreateWindow( "SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, SDL_WINDOW_SHOWN );
+        _window = SDL_CreateWindow( "SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, SDL_WINDOW_ALLOW_HIGHDPI );
         _renderer = SDL_CreateRenderer( _window, -1, SDL_RENDERER_ACCELERATED );
         sdl::Texture::setTexture( sdl::Texture::createTexture( width, height ) );
         sdl::Surface::setSurface( sdl::Surface::createSurface( width, height ) );
@@ -34,8 +34,8 @@ void sdl::Window::initWindow( int width, int height )
 
 void sdl::Window::Update( void )
 {
-    SDL_UpdateTexture(sdl::Texture::getTexture(), NULL, sdl::Surface::getSurface() -> pixels, sdl::Surface::getSurface() -> pitch);
-    SDL_RenderCopy(_renderer, sdl::Texture::getTexture(), NULL, NULL);
+    SDL_UpdateTexture(sdl::Texture::getTexture(), sdl::Texture::getDstRect(), sdl::Surface::getSurface() -> pixels, sdl::Surface::getSurface() -> pitch);
+    SDL_RenderCopy(_renderer, sdl::Texture::getTexture(), sdl::Texture::getSrcRect(), sdl::Texture::getDstRect());
     SDL_RenderPresent(_renderer);
 
     // Surface clear
