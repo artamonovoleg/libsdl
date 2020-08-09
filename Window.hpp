@@ -12,6 +12,7 @@ namespace sdl
             
             // Setters
             static void setBgColor( Uint32 color );
+            static void setFullScreen( void );
             // Getters
             static SDL_Window * getWindow( void ) { return _window; };
             static SDL_Renderer * getRenderer( void ) { return _renderer; };

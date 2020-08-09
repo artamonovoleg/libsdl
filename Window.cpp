@@ -49,6 +49,11 @@ void sdl::Window::setBgColor( Uint32 color )
     _bgcolor = color;
 }
 
+void sdl::Window::setFullScreen( void )
+{
+    SDL_SetWindowFullscreen( sdl::Window::getWindow(), SDL_WINDOW_FULLSCREEN );
+}
+
 void sdl::Window::deinitWindow( void )
 {
     SDL_DestroyRenderer( _renderer );
