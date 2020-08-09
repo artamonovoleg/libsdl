@@ -59,10 +59,11 @@ std::ostream& operator << (std::ostream& out, vec<T, size> v)
         out << v[i] << ',';
     }
     out << ')';
+    return out;
 }
 
 template <typename T, size_t size> 
-vec<T, size> operator + (vec <T, size> lhs, vec <T, size> rhs )
+vec<T, size> operator + (vec <T, size> lhs, vec <T, size> rhs)
 {
     vec <T, size> ret;
     for (size_t i = 0; i < size; i++)
@@ -73,7 +74,7 @@ vec<T, size> operator + (vec <T, size> lhs, vec <T, size> rhs )
 }
 
 template <typename T, size_t size> 
-vec<T, size> operator - (vec <T, size> lhs, vec <T, size> rhs )
+vec<T, size> operator - (vec <T, size> lhs, vec <T, size> rhs)
 {
     vec <T, size> ret;
     for (size_t i = 0; i < size; i++)
@@ -84,7 +85,7 @@ vec<T, size> operator - (vec <T, size> lhs, vec <T, size> rhs )
 }
 
 template <typename T, size_t size> 
-vec<T, size> operator * (vec <T, size> lhs, vec <T, size> rhs )
+vec<T, size> operator * (vec <T, size> lhs, vec <T, size> rhs)
 {
     T ret = T();
     for (size_t i = 0; i < size; i++)

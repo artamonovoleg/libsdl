@@ -2,8 +2,6 @@
 #include <iostream>
 bool sdl::Events::_keys[COUNT_KEYS] = { false };
 bool sdl::Events::_buttons[COUNT_BUTTONS] = { false };
-bool sdl::Events::mouseScrollDown = false;
-bool sdl::Events::mouseScrollUp = false;
 SDL_Event sdl::Events::_event;
 
 void sdl::Events::handleInput( void )
@@ -35,27 +33,10 @@ void sdl::Events::handleInput( void )
             case SDL_MOUSEBUTTONUP:
                 _buttons[_event.button.button] = false;
                 break;
-            case SDL_MOUSEWHEEL:
-                if(_event.wheel.y > 0) // scroll up
-                {
-                    mouseScrollUp = true;
-                    mouseScrollDown = false;
-                }
-                else if(_event.wheel.y < 0) // scroll down
-                {
-                    mouseScrollDown = true;
-                    mouseScrollUp = false;
-                }
-                break;
             default:
-                mouseScrollDown = false;
-                mouseScrollUp = false;
                 break;
         }
-
-
     }
-
 }
 
 bool sdl::Events::InputGetButton( int button )
@@ -106,3 +87,4 @@ bool sdl::Events::InputGetButtonUp ( int button )
 
     return isReleased;
 }
+

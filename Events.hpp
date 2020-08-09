@@ -13,7 +13,7 @@ namespace sdl
             static bool _keys[COUNT_KEYS];
             static bool _buttons[COUNT_BUTTONS];
             static SDL_Event _event;
-            static void HandleScroll( void );
+
         public:
             static void handleInput ( void );
             static void getMousePosition( int * x, int * y );
@@ -21,9 +21,6 @@ namespace sdl
             static bool InputGetButton( int button );
             static bool InputGetButtonDown ( int button );
             static bool InputGetButtonUp ( int button );
-
-            static bool mouseScrollUp;
-            static bool mouseScrollDown;
     };
 }
 
