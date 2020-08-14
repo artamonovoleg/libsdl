@@ -140,12 +140,12 @@ int main(void)
         textRect.w = textSurface.get()->w;
         textRect.h = textSurface.get()->h;
         sdl::Texture textTexture(renderer, textSurface);
+        textTexture.setRects(nullptr, &textRect);
+        //
 
         //Draw part
         sdl::Texture drawTexture(renderer, width, height);
-        //
-//        SDL_Surface
-        textTexture.setRects(nullptr, &textRect);
+
         int x = 250;
         int y = 250;
         point p;
@@ -154,11 +154,10 @@ int main(void)
         point p1;
         p1.pos = {width, height, 0};
         p1.color = 0x00ffff;
-
+        //
         while (!sdl::Events::InputGetKey(SDLK_ESCAPE))
         {
             renderer.clearRenderer();
-            textTexture.getSurface().get();
             drawTexture.fillRect(0x000000);
             textTexture.fillRect(0x000000);
 
