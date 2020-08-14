@@ -1,17 +1,22 @@
-#ifndef VECTORS_HPP
-#define VECTORS_HPP
+//
+// Created by kaygalle on 13.08.2020.
+//
+
+#ifndef LIBSDL_VECTORS_HPP
+#define LIBSDL_VECTORS_HPP
+
 #include <ostream>
 #include <sstream>
 #include <fstream>
 #include <cassert>
 
-template <class T, std::size_t N> 
+template <class T, std::size_t N>
 struct vec
 {
     private:
         T _data[N];
     public:
-        T& operator [] (int i) { assert(i < N); return _data[i]; }; 
+        T& operator [] (int i) { assert(i < N); return _data[i]; };
 };
 
 typedef vec <float, 2> vec2f;
@@ -62,7 +67,7 @@ std::ostream& operator << (std::ostream& out, vec<T, size> v)
     return out;
 }
 
-template <typename T, size_t size> 
+template <typename T, size_t size>
 vec<T, size> operator + (vec <T, size> lhs, vec <T, size> rhs)
 {
     vec <T, size> ret;
@@ -73,7 +78,7 @@ vec<T, size> operator + (vec <T, size> lhs, vec <T, size> rhs)
     return ret;
 }
 
-template <typename T, size_t size> 
+template <typename T, size_t size>
 vec<T, size> operator - (vec <T, size> lhs, vec <T, size> rhs)
 {
     vec <T, size> ret;
@@ -84,7 +89,7 @@ vec<T, size> operator - (vec <T, size> lhs, vec <T, size> rhs)
     return ret;
 }
 
-template <typename T, size_t size> 
+template <typename T, size_t size>
 vec<T, size> operator * (vec <T, size> lhs, vec <T, size> rhs)
 {
     T ret = T();
@@ -92,8 +97,8 @@ vec<T, size> operator * (vec <T, size> lhs, vec <T, size> rhs)
     {
         ret[i] += lhs[i] * rhs[i];
     }
-    
+
     return ret;
 }
 
-#endif
+#endif //LIBSDL_VECTORS_HPP

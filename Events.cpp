@@ -1,5 +1,5 @@
 #include "Events.hpp"
-#include <iostream>
+
 bool sdl::Events::_keys[COUNT_KEYS] = { false };
 bool sdl::Events::_buttons[COUNT_BUTTONS] = { false };
 SDL_Event sdl::Events::_event;
@@ -87,4 +87,3 @@ bool sdl::Events::InputGetButtonUp ( int button )
 
     return isReleased;
 }
-

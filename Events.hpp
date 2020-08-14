@@ -1,7 +1,8 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 
-#include "libsdl.hpp"
+//#include "libsdl.hpp"
+#include <SDL2/SDL.h>
 
 #define COUNT_KEYS 332
 #define COUNT_BUTTONS 6
