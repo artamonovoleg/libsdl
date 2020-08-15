@@ -112,8 +112,8 @@ int main(void)
 
         // Font part
         TTF_Init();
-
         sdl::Font font("./19554.ttf", 24);
+
         SDL_Color textColor = {0, 255, 0, 255};
         sdl::Surface textSurface(TTF_RenderText_Solid(font.get(), "Hello World", textColor));
         TTF_Quit();
