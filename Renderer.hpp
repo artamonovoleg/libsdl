@@ -6,7 +6,7 @@
 #define SDL_RENDERER_HPP
 
 #include <SDL2/SDL.h>
-//class Exception {};
+
 namespace sdl
 {
     class Texture;
@@ -15,24 +15,16 @@ namespace sdl
     class Renderer
     {
         private:
-
             SDL_Renderer *_renderer = nullptr; // Manage SDL object
         public:
-
             Renderer(Window &w);
-
             ~Renderer(void);
 
-
             void clearRenderer(void);
-
             void renderCopy(sdl::Texture &texture);
-
             void presentRenderer(void);
 
-
             SDL_Renderer *get(void);
-
     };
 }
 

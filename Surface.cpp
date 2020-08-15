@@ -3,6 +3,7 @@
 //
 
 #include "Surface.hpp"
+#include "Exception.hpp"
 
 sdl::Surface::Surface(int width, int height)
 {

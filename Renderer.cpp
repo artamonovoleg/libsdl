@@ -3,7 +3,7 @@
 //
 
 #include "Renderer.hpp"
-#include "temp.hpp"
+#include "Exception.hpp"
 #include "Texture.hpp"
 #include "Window.hpp"
 

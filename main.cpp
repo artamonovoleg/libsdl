@@ -3,13 +3,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "Vectors.hpp"
 #include "Events.hpp"
-#include "temp.hpp"
 #include "Renderer.hpp"
 #include "Window.hpp"
 #include "Surface.hpp"
 #include "Texture.hpp"
+#include "Point.hpp"
+#include "Exception.hpp"
 
 namespace sdl
 {
@@ -159,7 +159,6 @@ int main(void)
         {
             renderer.clearRenderer();
             drawTexture.fillRect(0x000000);
-            textTexture.fillRect(0x000000);
 
             sdl::drawPoint(drawTexture.getSurface(), p);
             sdl::drawLine(drawTexture.getSurface(), p, p1);

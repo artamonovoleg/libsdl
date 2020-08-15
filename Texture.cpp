@@ -3,6 +3,7 @@
 //
 
 #include "Texture.hpp"
+#include "Exception.hpp"
 
 sdl::Texture::Texture(sdl::Renderer &renderer, int width, int height) : _renderer(renderer), _surface(width, height)
 {
