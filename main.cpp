@@ -4,12 +4,12 @@ namespace sdl
 {
     void drawPoint(sdl::Surface &surface, point p)
     {
-         *(((Uint32 *) surface.get()->pixels) + (int(p.pos.x) + int(p.pos.y) * surface.get()->w)) = p.color;
+        *(((Uint32 *) surface.get()->pixels) + (int(p.pos.x) + int(p.pos.y) * surface.get()->w)) = p.color;
     }
 
     void drawLine(sdl::Surface &surface, point p0, point p1)
     {
-        int x,y,xe,ye;
+        int x, y, xe, ye;
         int x1 = p0.pos.x;
         int x2 = p1.pos.x;
         int y1 = p0.pos.y;
@@ -25,25 +25,24 @@ namespace sdl
         {
             if (dx >= 0)
             {
-                x=x1;
-                y=y1;
-                xe=x2;
-            }
-            else
+                x = x1;
+                y = y1;
+                xe = x2;
+            } else
             {
-                x=x2;
-                y=y2;
-                xe=x1;
+                x = x2;
+                y = y2;
+                xe = x1;
             }
             p.pos.x = x;
             p.pos.y = y;
             p.color = p0.color;
 //            p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
-            drawPoint(surface,p);
+            drawPoint(surface, p);
             for (int i = 0; x < xe; i++)
             {
                 x++;
-                if( px < 0 )
+                if (px < 0)
                     px = px + 2 * dy1;
                 else
                 {
@@ -60,16 +59,14 @@ namespace sdl
 //                p.color = mixColor(p0.color, p1.color, lerp(p0.pos.x, p1.pos.x, p.pos.x) );
                 drawPoint(surface, p);
             }
-        }
-        else
+        } else
         {
             if (dy >= 0)
             {
                 x = x1;
                 y = y1;
                 ye = y2;
-            }
-            else
+            } else
             {
                 x = x2;
                 y = y2;
@@ -83,7 +80,7 @@ namespace sdl
             for (int i = 0; y < ye; i++)
             {
                 y++;
-                if ( py <= 0 )
+                if (py <= 0)
                     py = py + 2 * dx1;
                 else
                 {
@@ -102,6 +99,44 @@ namespace sdl
         }
     }
 
+    class Rect
+    {
+        private:
+            SDL_Rect _rect;
+        public:
+            Rect(int x, int y, int w, int h)
+            {
+                _rect.x = x;
+                _rect.y = y;
+                _rect.w = w;
+                _rect.h = h;
+            };
+            ~Rect() = default;
+
+            SDL_Rect *get(void) { return &_rect; };
+
+    };
+
+    class Font
+    {
+        private:
+            TTF_Font *_font;
+        public:
+            Font(const char *file, int ptsize)
+            {
+                if((_font = TTF_OpenFont(file, ptsize)) == nullptr)
+                    throw Exception("Failed to read font");
+            };
+            ~Font(void)
+            {
+                if(_font != nullptr)
+                    delete _font;
+            }
+
+            TTF_Font *get(void) { return _font; };
+
+    };
+
 }
 
 int main(void)
@@ -117,26 +152,20 @@ int main(void)
         // Font part
         TTF_Init();
 
-        TTF_Font *verdanaFont = TTF_OpenFont("./19554.ttf", 24);
+        sdl::Font font("./19554.ttf", 24);
         SDL_Color textColor = {0, 255, 0, 255};
-        SDL_Surface *txt = TTF_RenderText_Solid(verdanaFont, "Hello World", textColor);
-        sdl::Surface textSurface(txt);
-
+        sdl::Surface textSurface(TTF_RenderText_Solid(font.get(), "Hello World", textColor));
         TTF_Quit();
-        SDL_Rect textRect;
-        textRect.x = 100;
-        textRect.y = 100;
-        textRect.w = textSurface.get()->w;
-        textRect.h = textSurface.get()->h;
+
+        sdl::Rect textRect(100, 100, textSurface.get()->w, textSurface.get()->h);
         sdl::Texture textTexture(renderer, textSurface);
-        textTexture.setRects(nullptr, &textRect);
+        textTexture.setRects(nullptr, textRect.get());
         //
 
         //Draw part
         sdl::Texture drawTexture(renderer, width, height);
 
-        int x = 250;
-        int y = 250;
+
         point p;
         p.pos = {260, 260, 0};
         p.color = 0x00ffff;
