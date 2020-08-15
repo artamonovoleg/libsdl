@@ -1,15 +1,4 @@
-#include <iostream>
-#include <utility>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-
-#include "Events.hpp"
-#include "Renderer.hpp"
-#include "Window.hpp"
-#include "Surface.hpp"
-#include "Texture.hpp"
-#include "Point.hpp"
-#include "Exception.hpp"
+#include "libsdl.hpp"
 
 namespace sdl
 {
