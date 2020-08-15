@@ -16,5 +16,7 @@
 #include "Texture.hpp"
 #include "Vectors.hpp"
 #include "Point.hpp"
+#include "Rect.hpp"
+#include "Font.hpp"
 
 #endif //SDL_LIBSDL_HPP

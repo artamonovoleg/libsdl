@@ -98,45 +98,6 @@ namespace sdl
             }
         }
     }
-
-    class Rect
-    {
-        private:
-            SDL_Rect _rect;
-        public:
-            Rect(int x, int y, int w, int h)
-            {
-                _rect.x = x;
-                _rect.y = y;
-                _rect.w = w;
-                _rect.h = h;
-            };
-            ~Rect() = default;
-
-            SDL_Rect *get(void) { return &_rect; };
-
-    };
-
-    class Font
-    {
-        private:
-            TTF_Font *_font;
-        public:
-            Font(const char *file, int ptsize)
-            {
-                if((_font = TTF_OpenFont(file, ptsize)) == nullptr)
-                    throw Exception("Failed to read font");
-            };
-            ~Font(void)
-            {
-                if(_font != nullptr)
-                    delete _font;
-            }
-
-            TTF_Font *get(void) { return _font; };
-
-    };
-
 }
 
 int main(void)
