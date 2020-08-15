@@ -16,7 +16,7 @@ namespace sdl
             TTF_Font *_font;
         public:
             Font(const char *file, int ptsize);
-            ~Font(void) = default;
+            ~Font(void);
 
             TTF_Font *get(void);
     };

@@ -11,4 +11,12 @@ sdl::Font::Font(const char *file, int ptsize)
         throw Exception("Failed to read font");
 }
 
+sdl::Font::~Font(void)
+{
+    if( _font != nullptr)
+        free(_font);
+};
+
 TTF_Font *sdl::Font::get(void) { return _font; }
+
+
