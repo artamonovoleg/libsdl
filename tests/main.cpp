@@ -1,6 +1,7 @@
 #include "Font.hpp"
 #include "Text.hpp"
 #include "Window.hpp"
+#include "Color.hpp"
 
 int main()
 {
@@ -10,9 +11,9 @@ int main()
     bool isClosed = false;
 
     SDL_Event event;
-    TTF_Init();
+    
     sdl::Font font ("./res/Roboto-Regular.ttf", 24);
-    sdl::Text text(font, "Hello world!", SDL_Color {255, 255, 255});
+    sdl::Text text(font, "Hello world!", sdl::Color::hex_to_sdl(0xFFFFFF));
     text.setPos(250, 0);
 
     while (!isClosed)
@@ -31,7 +32,7 @@ int main()
         window.clear();
         window.drawText(text);
         window.drawPoint(Point {vec2i (width / 2, height / 2), 0xff00ff});
+        window.drawLine(Point {vec2i(0, 0), 0xff0000}, Point {vec2i(width, height), 0xffff00});
         window.present();
     }
-    // TTF_Quit();
 }

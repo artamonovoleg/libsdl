@@ -22,5 +22,6 @@ namespace sdl
 
             void drawText(Text &text);
             void drawPoint(Point p);
+            void drawLine(Point start, Point end);
     };
 }

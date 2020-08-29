@@ -1,4 +1,5 @@
 #include "Window.hpp"
+#include "Color.hpp"
 
 sdl::Window::Window(std::string title, int x, int y, int w, int h, Uint32 flag)
 {
@@ -30,4 +31,101 @@ void sdl::Window::drawPoint(Point p)
 {
     if (p.position.x >= 0 && p.position.x < _surface->w && p.position.y >= 0 && p.position.y < _surface->h)
         *((Uint32*)(_surface->pixels) + (p.position.x + p.position.y * _surface->w)) = p.color;
+}
+
+void sdl::Window::drawLine(Point start, Point end)
+{
+    int x, y, xe, ye;
+    int x1 = start.position.x;
+    int x2 = end.position.x;
+    int y1 = start.position.y;
+    int y2 = end.position.y;
+
+    Point p;
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int dx1 = abs(dx);
+    int dy1 = abs(dy);
+    int px = 2 * dy1 - dx1;
+    int py = 2 * dx1 - dy1;
+    if (dy1 <= dx1)
+    {
+        if (dx >= 0)
+        {
+            x = x1;
+            y = y1;
+            xe = x2;
+        }
+        else
+        {
+            x = x2;
+            y = y2;
+            xe = x1;
+        }
+        p.position.x = x;
+        p.position.y = y;
+        p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+
+        drawPoint(p);
+
+        for (int i = 0; x < xe; i++)
+        {
+            x++;
+            if (px < 0)
+                px = px + 2 * dy1;
+            else
+            {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                    y++;
+                else
+                    y--;
+                px = px + 2 * (dy1 - dx1);
+            }
+
+            p.position.x = x;
+            p.position.y = y;
+            p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+            
+            drawPoint(p);
+        }
+    }
+    else
+    {
+        if (dy >= 0)
+        {
+            x = x1;
+            y = y1;
+            ye = y2;
+        }
+        else
+        {
+            x = x2;
+            y = y2;
+            ye = y1;
+        }
+        p.position.x = x;
+        p.position.y = y;
+        p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+
+        drawPoint(p);
+        for (int i = 0; y < ye; i++)
+        {
+            y++;
+            if (py <= 0)
+                py = py + 2 * dx1;
+            else
+            {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                    x++;
+                else
+                    x--;
+                py = py + 2 * (dx1 - dy1);
+            }
+            p.position.x = x;
+            p.position.y = y;
+            p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+
+            drawPoint(p);
+        }
+    }
 }
