@@ -1,9 +1,4 @@
-//
-// Created by kaygalle on 13.08.2020.
-//
-
-#ifndef LIBSDL_VECTORS_HPP
-#define LIBSDL_VECTORS_HPP
+#pragma once
 
 #include <ostream>
 #include <sstream>
@@ -100,5 +95,3 @@ vec<T, size> operator * (vec <T, size> lhs, vec <T, size> rhs)
 
     return ret;
 }
-
-#endif //LIBSDL_VECTORS_HPP
