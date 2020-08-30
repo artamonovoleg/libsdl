@@ -15,14 +15,17 @@ int main()
 
     sdl::Font font ("./res/Roboto-Regular.ttf", 24);
     sdl::Text text(font, "Hello world!", sdl::Color::hex_to_sdl(0xFFFFFF));
+    sdl::Text text1(font, "Hello world!", sdl::Color::hex_to_sdl(0xFF00FF));
     text.setPos(250, 0);
+    text1.setPos(250, 20);
 
     while (!sdl::EventHandler::isClosed)
     {
         window.clear();
         window.drawText(text);
-        window.drawPoint(Point {vec2i (width / 2, height / 2), 0xff00ff});
-        window.drawLine(Point {vec2i(0, 0), 0xff0000}, Point {vec2i(width, height), 0xffff00});
+        window.drawText(text1);
+        window.drawPoint(Point {vec2i (width / 2, height / 2), 0xFF00FF});
+        window.drawLine(Point {vec2i(0, 0), 0xff0000}, Point {vec2i(width, height), 0xFFFF00});
         window.present();
         sdl::EventHandler::update();
     }
