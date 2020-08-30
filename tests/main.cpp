@@ -11,30 +11,33 @@ namespace sdl
     {
         private:
         public:
-            enum State
-            {
-                None,
-                Pressed,
-                Held,
-                Released
-            };
             static SDL_Event event;
             static bool isClosed;
+            static Uint8 *_keys;
             static void initialize();
             static void update();
+
+            static bool inputGetKeyDown(SDL_Scancode scancode);
     };
 }
 
 bool sdl::EventHandler::isClosed;
 SDL_Event sdl::EventHandler::event;
+Uint8 *sdl::EventHandler::_keys = new Uint8 [256];
 
 void sdl::EventHandler::initialize()
 {
     isClosed = false;
+    for (int i = 0; i < 256; i++)
+    {
+        _keys[i] = 0;
+    }
 }
 
 void sdl::EventHandler::update()
 {
+    // SDL_PumpEvents();
+
     while (SDL_PollEvent(&event))
     {
         switch (event.type)
@@ -43,15 +46,29 @@ void sdl::EventHandler::update()
                 isClosed = true;
             break;
             case SDL_KEYDOWN:
-                std::cout << "Down: " << event.key.keysym.scancode << std::endl;
+                if ((int) event.key.repeat == 0)
+                {
+                    std::cout << (int) event.key.repeat << event.key.keysym.scancode << std::endl;
+                    _keys[event.key.keysym.scancode] = 1;
+                }
+                else
+                {
+                    _keys[event.key.keysym.scancode] = 0;
+                }
+                
             break;
             case SDL_KEYUP:
-                std::cout << "Up: " << event.key.keysym.scancode << std::endl;
+                _keys[event.key.keysym.scancode] = 0;
             break;
             default:
             break;
         }
     }
+}
+
+bool sdl::EventHandler::inputGetKeyDown(SDL_Scancode scancode)
+{
+    return (_keys[scancode] == 1);
 }
 
 int main()
