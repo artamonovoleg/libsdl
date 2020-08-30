@@ -14,7 +14,7 @@ namespace sdl
             SDL_Surface *_surface;
             SDL_Rect _textRect;
         public:
-            Text (Font &font, std::string text, SDL_Color color);
+            Text(Font &font, std::string text, SDL_Color color);
             ~Text (); 
 
             void setPos(int x, int y);

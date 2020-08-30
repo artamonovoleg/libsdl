@@ -1,6 +1,6 @@
 #include "Text.hpp"
 
-sdl::Text::Text (Font &font, std::string text, SDL_Color color)
+sdl::Text::Text(Font &font, std::string text, SDL_Color color)
 {
     _surface = TTF_RenderText_Blended (font.get(), text.c_str(), color);
     _textRect.x = 0;

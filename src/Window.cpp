@@ -14,7 +14,7 @@ sdl::Window::~Window()
 
 void sdl::Window::clear()
 {
-    SDL_FillRect(_surface, nullptr, SDL_MapRGB(_surface->format, 0x00, 0x00, 0x00));
+    SDL_FillRect(_surface, nullptr, SDL_MapRGB(_surface->format, _r, _g, _b));
 }
 
 void sdl::Window::present()
@@ -128,4 +128,30 @@ void sdl::Window::drawLine(Point start, Point end)
             drawPoint(p);
         }
     }
+}
+
+int sdl::Window::getWidth()
+{
+    int width;
+    SDL_GetWindowSize(_window, &width, nullptr);
+    return width;
+}
+
+int sdl::Window::getHeight()
+{
+    int height;
+    SDL_GetWindowSize(_window, nullptr, &height);
+    return height;
+}
+
+void sdl::Window::getWindowSize(int *width, int *height)
+{
+    SDL_GetWindowSize(_window, width, height);
+}
+
+void sdl::Window::setBgColor(Uint32 color)
+{
+    _r = (color >> 16) & 0xFF;
+    _g = (color >> 8) & 0xFF;
+    _b = (color) & 0xFF;
 }
