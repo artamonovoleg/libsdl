@@ -36,7 +36,8 @@ int main()
         // EVENT
         if (sdl::EventHandler::inputGetKeyDown(SDL_SCANCODE_A))
             std::cout << "Click A" << std::endl;
-
+        if (sdl::EventHandler::isScrollingUp())
+            std::cout << "Scroll up" << std::endl;
         sdl::EventHandler::update();
     }
 }

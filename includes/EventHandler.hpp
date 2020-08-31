@@ -18,6 +18,9 @@ namespace sdl
                 Released,
             };
 
+            static bool scrollUp;
+            static bool scrollDown;
+
         public:
             static bool isClosed;
             static void initialize();
@@ -25,5 +28,8 @@ namespace sdl
             static bool inputGetKey(SDL_Scancode scancode);
             static bool inputGetKeyDown(SDL_Scancode scancode);
             static bool inputGetKeyUp(SDL_Scancode scancode);
+            static void getMousePosition(int &x, int &y);
+            static bool isScrollingUp();
+            static bool isScrollingDown();
     };
 }

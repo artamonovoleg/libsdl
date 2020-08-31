@@ -3,12 +3,17 @@
 Uint8* sdl::EventHandler::_keys;
 SDL_Event sdl::EventHandler::_event;
 bool sdl::EventHandler::isClosed;
+bool sdl::EventHandler::scrollDown;
+bool sdl::EventHandler::scrollUp;
 
 void sdl::EventHandler::initialize()
 {
     _keys = new Uint8 [256];
     isClosed = false;
-
+    
+    scrollUp = false;
+    scrollDown = false;
+    
     for (int i = 0; i < 256; i++)
     {
         _keys[i] = State::None;
@@ -32,6 +37,19 @@ void sdl::EventHandler::update()
             break;
             case SDL_KEYUP:
                 _keys[_event.key.keysym.scancode] = State::Released;
+            break;
+            case SDL_MOUSEWHEEL:
+                if (_event.wheel.y > 0)
+                {
+                    scrollUp = true;
+                    scrollDown = false;
+                }
+                else
+                if (_event.wheel.y < 0)
+                {
+                    scrollDown = true;
+                    scrollUp = false;
+                }
             break;
             default:
             break;
@@ -63,4 +81,31 @@ bool sdl::EventHandler::inputGetKeyUp(SDL_Scancode scancode)
         return true;
     }
     return false;
+}
+
+void sdl::EventHandler::getMousePosition(int &x, int &y)
+{
+    SDL_GetMouseState(&x, &y);
+}
+
+bool sdl::EventHandler::isScrollingDown()
+{
+    if (scrollDown == true)
+    {
+        scrollDown = false;
+        return true;
+    }
+    else
+        return false;
+}
+
+bool sdl::EventHandler::isScrollingUp()
+{
+    if (scrollUp == true)
+    {
+        scrollUp = false;
+        return true;
+    }
+    else
+        return false;
 }
