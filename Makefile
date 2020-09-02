@@ -63,8 +63,8 @@ clean:
 nu:
 	@echo -ne "\r [`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES)`%]"
 
-# test: $(NAME) main.c
-# 	@gcc -g $(NAME) main.c -I$(HEADERS_DIRECTORY) -o test
+test: $(NAME) tests/main.cpp
+	@g++ -g tests/main.cpp $(NAME) -I$(HEADERS_DIRECTORY) `sdl2-config --cflags --libs` -o test -lSDL2 -lSDL2_ttf
 
 fclean: clean
 	@rm -f $(NAME)
