@@ -8,6 +8,8 @@ namespace sdl
     {
         private:
             static Uint8* _keys;
+            static Uint8* _mouse_buttons;
+            
             static SDL_Event _event;
 
             enum State
@@ -31,5 +33,7 @@ namespace sdl
             static void getMousePosition(int &x, int &y);
             static bool isScrollingUp();
             static bool isScrollingDown();
+            static bool inputGetButtonDown(int button);
+            static bool inputGetButtonUp(int button);
     };
 }

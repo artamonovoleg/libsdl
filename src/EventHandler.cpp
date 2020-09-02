@@ -1,6 +1,8 @@
 #include "EventHandler.hpp"
 
 Uint8* sdl::EventHandler::_keys;
+Uint8* sdl::EventHandler::_mouse_buttons;
+
 SDL_Event sdl::EventHandler::_event;
 bool sdl::EventHandler::isClosed;
 bool sdl::EventHandler::scrollDown;
@@ -9,6 +11,7 @@ bool sdl::EventHandler::scrollUp;
 void sdl::EventHandler::initialize()
 {
     _keys = new Uint8 [256];
+    _mouse_buttons = new Uint8 [3];
     isClosed = false;
     
     scrollUp = false;
@@ -17,6 +20,11 @@ void sdl::EventHandler::initialize()
     for (int i = 0; i < 256; i++)
     {
         _keys[i] = State::None;
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        _mouse_buttons [i] = State::None;
     }
 }
 
@@ -50,6 +58,13 @@ void sdl::EventHandler::update()
                     scrollDown = true;
                     scrollUp = false;
                 }
+            break;
+            case SDL_MOUSEBUTTONDOWN:
+                _mouse_buttons[_event.button.button] = State::Pressed;
+            break;
+            case SDL_MOUSEBUTTONUP:
+                _mouse_buttons[_event.button.button] = State::Released;
+            break;
             break;
             default:
             break;
@@ -104,6 +119,28 @@ bool sdl::EventHandler::isScrollingUp()
     if (scrollUp == true)
     {
         scrollUp = false;
+        return true;
+    }
+    else
+        return false;
+}
+
+bool sdl::EventHandler::inputGetButtonDown(int button)
+{
+    if (_mouse_buttons[button] == State::Pressed)
+    {
+        _mouse_buttons[button] = State::Held;
+        return true;
+    }
+    else
+        return false;    
+}
+
+bool sdl::EventHandler::inputGetButtonUp(int button)
+{
+    if (_mouse_buttons[button] == State::Released)
+    {
+        _mouse_buttons[button] = State::None;
         return true;
     }
     else

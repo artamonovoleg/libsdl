@@ -38,6 +38,8 @@ int main()
             std::cout << "Click A" << std::endl;
         if (sdl::EventHandler::isScrollingUp())
             std::cout << "Scroll up" << std::endl;
+        if (sdl::EventHandler::inputGetButtonUp(SDL_BUTTON_LEFT))
+            std::cout << "LKM" << std::endl;
         sdl::EventHandler::update();
     }
 }
