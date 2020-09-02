@@ -11,6 +11,10 @@ namespace sdl
     class Window
     {
         private:
+            /* Manage SDL objects
+                _window - Store SDL window
+                _surface - Store window surface
+            */
             SDL_Window *_window = nullptr;
             SDL_Surface *_surface = nullptr;
 
@@ -21,11 +25,14 @@ namespace sdl
         public:
             Window(std::string title, int x, int y, int w, int h, Uint32 flag);
             ~Window();
-
+            // Fill window surface with bg color
             void clear();
+            // Present updated window surface
             void present();
 
+            // Parameters - text box. Blit two surface in one
             void drawText(Text &text);
+            // Put pixel on window surface
             void drawPoint(Point p);
             void drawLine(Point start, Point end);
 
@@ -33,6 +40,7 @@ namespace sdl
             int getHeight();
             void getWindowSize(int *width, int*height);
 
+            // Set new _r _g _b
             void setBgColor(Uint32 color);
     };
 }
