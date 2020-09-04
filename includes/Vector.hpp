@@ -37,6 +37,7 @@ struct vec <T, 3>
     T x, y, z;
     vec() : x(T()), y(T()), z(T()) {};
     vec( T X, T Y, T Z) : x(X), y(Y), z(Z) {};
+    vec(vec<T,2> vec2, T Z) : x(vec2.x), y(vec2.y), z(Z) {};
     T& operator [] (int i)  { assert(i < 3); return (i > 1) ? z : (i > 0) ? y : x; };
 
 };

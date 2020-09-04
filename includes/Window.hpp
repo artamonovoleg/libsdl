@@ -5,6 +5,7 @@
 
 #include "Text.hpp"
 #include "Point.hpp"
+#include "Vector.hpp"
 
 namespace sdl
 {
@@ -33,8 +34,8 @@ namespace sdl
             // Parameters - text box. Blit two surface in one
             void drawText(Text &text);
             // Put pixel on window surface
-            void drawPoint(Point p);
-            void drawLine(Point start, Point end);
+            void putPixel(int x, int y, Uint32 color);
+            void drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, Uint32 end_color);
 
             int getWidth();
             int getHeight();
@@ -42,5 +43,6 @@ namespace sdl
 
             // Set new _r _g _b
             void setBgColor(Uint32 color);
+            void setFullscreenMode();
     };
 }

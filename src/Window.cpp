@@ -27,21 +27,17 @@ void sdl::Window::drawText(Text &text)
     SDL_BlitSurface(text.getSurface(), nullptr, _surface, text.getRect());
 }
 
-void sdl::Window::drawPoint(Point p)
+void sdl::Window::putPixel(int x, int y, Uint32 color)
 {
-    if (p.position.x >= 0 && p.position.x < _surface->w && p.position.y >= 0 && p.position.y < _surface->h)
-        *((Uint32*)(_surface->pixels) + (p.position.x + p.position.y * _surface->w)) = p.color;
+    if (x >= 0 && x < _surface->w && y >= 0 && y < _surface->h)
+        *((Uint32*)(_surface->pixels) + (x + y * _surface->w)) = color;
 }
 
-void sdl::Window::drawLine(Point start, Point end)
+void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, Uint32 end_color)
 {
     int x, y, xe, ye;
-    int x1 = start.position.x;
-    int x2 = end.position.x;
-    int y1 = start.position.y;
-    int y2 = end.position.y;
+    Uint32 color;
 
-    Point p;
     int dx = x2 - x1;
     int dy = y2 - y1;
     int dx1 = abs(dx);
@@ -62,11 +58,9 @@ void sdl::Window::drawLine(Point start, Point end)
             y = y2;
             xe = x1;
         }
-        p.position.x = x;
-        p.position.y = y;
-        p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+        color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
 
-        drawPoint(p);
+        putPixel(x, y, color);
 
         for (int i = 0; x < xe; i++)
         {
@@ -81,12 +75,9 @@ void sdl::Window::drawLine(Point start, Point end)
                     y--;
                 px = px + 2 * (dy1 - dx1);
             }
+            color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
 
-            p.position.x = x;
-            p.position.y = y;
-            p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
-            
-            drawPoint(p);
+            putPixel(x, y, color);
         }
     }
     else
@@ -103,11 +94,10 @@ void sdl::Window::drawLine(Point start, Point end)
             y = y2;
             ye = y1;
         }
-        p.position.x = x;
-        p.position.y = y;
-        p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+        color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
 
-        drawPoint(p);
+        putPixel(x, y, color);
+
         for (int i = 0; y < ye; i++)
         {
             y++;
@@ -121,11 +111,9 @@ void sdl::Window::drawLine(Point start, Point end)
                     x--;
                 py = py + 2 * (dx1 - dy1);
             }
-            p.position.x = x;
-            p.position.y = y;
-            p.color = sdl::Color::mix_color(start.color, end.color, sdl::Color::percent(start.position.x, end.position.x, p.position.x));
+            color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
 
-            drawPoint(p);
+            putPixel(x, y, color);
         }
     }
 }
@@ -154,4 +142,9 @@ void sdl::Window::setBgColor(Uint32 color)
     _r = (color >> 16) & 0xFF;
     _g = (color >> 8) & 0xFF;
     _b = (color) & 0xFF;
+}
+
+void sdl::Window::setFullscreenMode()
+{
+    SDL_SetWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
 }

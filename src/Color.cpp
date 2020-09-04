@@ -15,7 +15,7 @@ float sdl::Color::percent(int start, int end, float current)
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
 
-int sdl::Color::mix_color(int c1, int c2, float percent)
+Uint32 sdl::Color::mix_color(Uint32 c1, Uint32 c2, float percent)
 {
     int r;
 	int g;
@@ -29,7 +29,7 @@ int sdl::Color::mix_color(int c1, int c2, float percent)
 	return (r << 16 | g << 8 | b);
 }
 
-SDL_Color sdl::Color::hex_to_sdl(int color)
+SDL_Color sdl::Color::hex_to_sdl(Uint32 color)
 {
     SDL_Color ret;
     ret.r = (color >> 16) & 0xFF;

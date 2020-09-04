@@ -29,8 +29,8 @@ int main()
         window.clear();
         window.drawText(text);
         window.drawText(text1);
-        window.drawPoint(Point {vec2i (width / 2, height / 2), 0xFF00FF});
-        window.drawLine(Point {vec2i(0, 0), 0xff0000}, Point {vec2i(width, height), 0xFFFF00});
+        window.putPixel(width / 2, height / 2, 0XFFFF00);
+        window.drawLine(0, 0, 0xFF00FF, width, height, 0X00FFFF);
         window.present();
 
         // EVENT
