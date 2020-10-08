@@ -1,8 +1,8 @@
-NAME=libsdl.a
+NAME = libsdl.a
 
-CC = g++
+CC = clang++
 
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS= -std=c++11 -Wall -Wextra -Werror
 
 INCLUDES = -I$(HEADERS_DIRECTORY)
 HEADERS_LIST = libsdl.hpp
@@ -54,7 +54,7 @@ $(OBJECTS_DIRECTORY):
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES)`%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Compiling file [$(COL_VIOLET)$<$(COL_GREEN)].($(CURRENT_FILES) / $(TOTAL_FILES))$(COL_END)$(BEGIN_LINE)"
 
 clean:
@@ -62,9 +62,6 @@ clean:
 
 nu:
 	@echo -ne "\r [`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES)`%]"
-
-test: $(NAME) tests/main.cpp
-	@g++ -g tests/main.cpp $(NAME) -I$(HEADERS_DIRECTORY) `sdl2-config --cflags --libs` -o test -lSDL2 -lSDL2_ttf
 
 fclean: clean
 	@rm -f $(NAME)
