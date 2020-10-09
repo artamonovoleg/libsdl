@@ -33,6 +33,7 @@ namespace sdl
             static void getMousePosition(int &x, int &y);
             static bool isScrollingUp();
             static bool isScrollingDown();
+            static bool inputGetButton(int button);
             static bool inputGetButtonDown(int button);
             static bool inputGetButtonUp(int button);
     };

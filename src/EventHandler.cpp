@@ -125,6 +125,11 @@ bool sdl::EventHandler::isScrollingUp()
         return false;
 }
 
+bool sdl::EventHandler::inputGetButton(int button)
+{
+    return ((_mouse_buttons[button] == State::Held) || _mouse_buttons[button] == Pressed);
+}
+
 bool sdl::EventHandler::inputGetButtonDown(int button)
 {
     if (_mouse_buttons[button] == State::Pressed)
