@@ -2,7 +2,7 @@ NAME = libsdl.a
 
 CC = clang++
 
-CFLAGS= -std=c++11 -Wall -Wextra -Werror
+CFLAGS= -std=c++11 -Wall -Wextra
 
 INCLUDES = -I$(HEADERS_DIRECTORY)
 HEADERS_LIST = libsdl.hpp

@@ -11,10 +11,13 @@ namespace sdl
         private:
             // Manage SDL object
             TTF_Font *_font = nullptr; 
+            int _ptsize = 0;
         public:
             // Path to font
             Font(std::string path, int ptsize);
             ~Font();
+
+            int getSize();
             // Get SDL object
             TTF_Font *get();
     };

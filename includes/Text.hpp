@@ -18,12 +18,12 @@ namespace sdl
             SDL_Surface *_surface;
             SDL_Rect _textRect;
         public:
-            Text(Font &font, std::string text, SDL_Color color);
+            Text(Font &font, std::string text, SDL_Color fg_color);
             ~Text (); 
             // Set position of text box
             void setPos(int x, int y);
             
-            SDL_Rect *getRect();
-            SDL_Surface *getSurface();
+            SDL_Rect* getRect();
+            SDL_Surface* getSurface();
     };
 }
