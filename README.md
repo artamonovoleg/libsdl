@@ -2,21 +2,18 @@
 
 # Simple example
 
+
 int main()
 {
     int width = 800;
     int height = 600;
     sdl::Window window("SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
-
     sdl::Font font ("./res/Roboto-Regular.ttf", 24);
     sdl::Text text(font, "Hello world! \n New Line", sdl::Color::hex_to_sdl(0xFFFFFF));
     sdl::Text text1(font, "Hello world!", sdl::Color::hex_to_sdl(0xFF00FF));
     text.setPos(250, 0);
-
     window.setBgColor(0x505050);
-
     sdl::EventHandler::initialize();
-
     while (!sdl::EventHandler::isClosed)
     {
         window.clear();
@@ -26,7 +23,6 @@ int main()
         window.drawLine(0, 0, 0xFF00FF, width, height, 0X00FFFF);
         window.present();
         sdl::EventHandler::update();
-
         if (sdl::EventHandler::inputGetKeyDown(SDL_SCANCODE_A))
             std::cout << "Click A" << std::endl;
         if (sdl::EventHandler::isScrollingUp())
