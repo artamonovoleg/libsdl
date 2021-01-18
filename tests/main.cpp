@@ -31,6 +31,6 @@ int main()
             std::cout << "Scroll up" << std::endl;
         if (sdl::EventHandler::InputGetButtonUp(SDL_BUTTON_LEFT))
             std::cout << "LKM" << std::endl;
-        sdl::EventHandler::Update();
+        sdl::EventHandler::PollEvents();
     }
 }

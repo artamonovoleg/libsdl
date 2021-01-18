@@ -28,7 +28,7 @@ void sdl::EventHandler::Init()
     }
 }
 
-void sdl::EventHandler::Update()
+void sdl::EventHandler::PollEvents()
 {
     while (SDL_PollEvent(&_event))
     {

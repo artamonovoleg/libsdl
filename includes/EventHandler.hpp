@@ -27,7 +27,7 @@ namespace sdl
             friend class Window;
         public:
             static void Init();
-            static void Update();
+            static void PollEvents();
             static bool InputGetKey(SDL_Scancode scancode);
             static bool InputGetKeyDown(SDL_Scancode scancode);
             static bool InputGetKeyUp(SDL_Scancode scancode);
