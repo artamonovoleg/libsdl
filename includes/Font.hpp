@@ -17,8 +17,8 @@ namespace sdl
             Font(std::string path, int ptsize);
             ~Font();
 
-            int getSize();
+            int         GetSize();
             // Get SDL object
-            TTF_Font *get();
+            TTF_Font    *Get();
     };
 }

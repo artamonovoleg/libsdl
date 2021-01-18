@@ -10,9 +10,9 @@ namespace sdl
             Color () = default;
             ~Color () = default;
         public:
-            static int lerp(int start, int end, float percentage);
-            static float percent(int start, int end, float current);
-            static Uint32 mix_color(Uint32 c1, Uint32 c2, float percent);
-            static SDL_Color hex_to_sdl(Uint32 color);
+            static int Lerp(int start, int end, float percentage);
+            static float Percent(int start, int end, float current);
+            static Uint32 MixColor(Uint32 c1, Uint32 c2, float percent);
+            static SDL_Color HexToSdl(Uint32 color);
     };    
 }

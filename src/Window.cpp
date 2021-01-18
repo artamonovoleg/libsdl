@@ -12,28 +12,28 @@ sdl::Window::~Window()
     SDL_DestroyWindow(_window);
 }
 
-void sdl::Window::clear()
+void sdl::Window::Clear()
 {
     SDL_FillRect(_surface, nullptr, SDL_MapRGB(_surface->format, _r, _g, _b));
 }
 
-void sdl::Window::present()
+void sdl::Window::Present()
 {
     SDL_UpdateWindowSurface(_window);
 }
 
-void sdl::Window::drawText(Text &text)
+void sdl::Window::DrawText(Text &text)
 {
-    SDL_BlitSurface(text.getSurface(), nullptr, _surface, text.getRect());
+    SDL_BlitSurface(text.GetSurface(), nullptr, _surface, text.GetRect());
 }
 
-void sdl::Window::putPixel(int x, int y, Uint32 color)
+void sdl::Window::PutPixel(int x, int y, Uint32 color)
 {
     if (x >= 0 && x < _surface->w && y >= 0 && y < _surface->h)
         *((Uint32*)(_surface->pixels) + (x + y * _surface->w)) = color;
 }
 
-void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, Uint32 end_color)
+void sdl::Window::DrawLine(int x1, int y1, Uint32 start_color, int x2, int y2, Uint32 end_color)
 {
     int x, y, xe, ye;
     Uint32 color;
@@ -58,9 +58,9 @@ void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, U
             y = y2;
             xe = x1;
         }
-        color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
+        color = sdl::Color::MixColor(start_color, end_color, sdl::Color::Percent(x1, x2, x));
 
-        putPixel(x, y, color);
+        PutPixel(x, y, color);
 
         for (int i = 0; x < xe; i++)
         {
@@ -75,9 +75,9 @@ void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, U
                     y--;
                 px = px + 2 * (dy1 - dx1);
             }
-            color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
+            color = sdl::Color::MixColor(start_color, end_color, sdl::Color::Percent(x1, x2, x));
 
-            putPixel(x, y, color);
+            PutPixel(x, y, color);
         }
     }
     else
@@ -94,9 +94,9 @@ void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, U
             y = y2;
             ye = y1;
         }
-        color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
+        color = sdl::Color::MixColor(start_color, end_color, sdl::Color::Percent(x1, x2, x));
 
-        putPixel(x, y, color);
+        PutPixel(x, y, color);
 
         for (int i = 0; y < ye; i++)
         {
@@ -111,40 +111,40 @@ void sdl::Window::drawLine(int x1, int y1, Uint32 start_color, int x2, int y2, U
                     x--;
                 py = py + 2 * (dx1 - dy1);
             }
-            color = sdl::Color::mix_color(start_color, end_color, sdl::Color::percent(x1, x2, x));
+            color = sdl::Color::MixColor(start_color, end_color, sdl::Color::Percent(x1, x2, x));
 
-            putPixel(x, y, color);
+            PutPixel(x, y, color);
         }
     }
 }
 
-int sdl::Window::getWidth()
+int sdl::Window::GetWidth()
 {
     int width;
     SDL_GetWindowSize(_window, &width, nullptr);
     return width;
 }
 
-int sdl::Window::getHeight()
+int sdl::Window::GetHeight()
 {
     int height;
     SDL_GetWindowSize(_window, nullptr, &height);
     return height;
 }
 
-void sdl::Window::getWindowSize(int *width, int *height)
+void sdl::Window::GetWindowSize(int *width, int *height)
 {
     SDL_GetWindowSize(_window, width, height);
 }
 
-void sdl::Window::setBgColor(Uint32 color)
+void sdl::Window::SetClearColor(Uint32 color)
 {
     _r = (color >> 16) & 0xFF;
     _g = (color >> 8) & 0xFF;
     _b = (color) & 0xFF;
 }
 
-void sdl::Window::setFullscreenMode()
+void sdl::Window::SetFullscreenMode()
 {
     SDL_SetWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
 }

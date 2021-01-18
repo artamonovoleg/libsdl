@@ -21,9 +21,9 @@ namespace sdl
             Text(Font &font, std::string text, SDL_Color fg_color);
             ~Text (); 
             // Set position of text box
-            void setPos(int x, int y);
+            void            SetPos(int x, int y);
             
-            SDL_Rect* getRect();
-            SDL_Surface* getSurface();
+            SDL_Rect*       GetRect();
+            SDL_Surface*    GetSurface();
     };
 }

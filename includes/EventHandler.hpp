@@ -22,19 +22,18 @@ namespace sdl
 
             static bool scrollUp;
             static bool scrollDown;
-
         public:
             static bool isClosed;
-            static void initialize();
-            static void update();
-            static bool inputGetKey(SDL_Scancode scancode);
-            static bool inputGetKeyDown(SDL_Scancode scancode);
-            static bool inputGetKeyUp(SDL_Scancode scancode);
-            static void getMousePosition(int &x, int &y);
-            static bool isScrollingUp();
-            static bool isScrollingDown();
-            static bool inputGetButton(int button);
-            static bool inputGetButtonDown(int button);
-            static bool inputGetButtonUp(int button);
+            static void Init();
+            static void Update();
+            static bool InputGetKey(SDL_Scancode scancode);
+            static bool InputGetKeyDown(SDL_Scancode scancode);
+            static bool InputGetKeyUp(SDL_Scancode scancode);
+            static void GetMousePosition(int &x, int &y);
+            static bool IsScrollingUp();
+            static bool IsScrollingDown();
+            static bool InputGetButton(int button);
+            static bool InputGetButtonDown(int button);
+            static bool InputGetButtonUp(int button);
     };
 }

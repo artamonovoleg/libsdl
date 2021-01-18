@@ -12,12 +12,12 @@ sdl::Font::~Font()
     TTF_Quit();
 }
 
-int sdl::Font::getSize()
+int sdl::Font::GetSize()
 {
     return _ptsize;
 }
 
-TTF_Font *sdl::Font::get()
+TTF_Font *sdl::Font::Get()
 {
     return _font;
 }

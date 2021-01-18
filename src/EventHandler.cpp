@@ -8,7 +8,7 @@ bool sdl::EventHandler::isClosed;
 bool sdl::EventHandler::scrollDown;
 bool sdl::EventHandler::scrollUp;
 
-void sdl::EventHandler::initialize()
+void sdl::EventHandler::Init()
 {
     _keys = new Uint8 [256];
     _mouse_buttons = new Uint8 [3];
@@ -28,7 +28,7 @@ void sdl::EventHandler::initialize()
     }
 }
 
-void sdl::EventHandler::update()
+void sdl::EventHandler::Update()
 {
     while (SDL_PollEvent(&_event))
     {
@@ -72,12 +72,12 @@ void sdl::EventHandler::update()
     }
 }
 
-bool sdl::EventHandler::inputGetKey(SDL_Scancode scancode)
+bool sdl::EventHandler::InputGetKey(SDL_Scancode scancode)
 {
     return (_keys[scancode] == State::Pressed || _keys[scancode] == State::Held);
 }
 
-bool sdl::EventHandler::inputGetKeyDown(SDL_Scancode scancode)
+bool sdl::EventHandler::InputGetKeyDown(SDL_Scancode scancode)
 {
     if (_keys[scancode] == State::Pressed)
     {
@@ -88,7 +88,7 @@ bool sdl::EventHandler::inputGetKeyDown(SDL_Scancode scancode)
         return false;
 }
 
-bool sdl::EventHandler::inputGetKeyUp(SDL_Scancode scancode)
+bool sdl::EventHandler::InputGetKeyUp(SDL_Scancode scancode)
 {
     if (_keys[scancode] == State::Released)
     {
@@ -98,12 +98,12 @@ bool sdl::EventHandler::inputGetKeyUp(SDL_Scancode scancode)
     return false;
 }
 
-void sdl::EventHandler::getMousePosition(int &x, int &y)
+void sdl::EventHandler::GetMousePosition(int &x, int &y)
 {
     SDL_GetMouseState(&x, &y);
 }
 
-bool sdl::EventHandler::isScrollingDown()
+bool sdl::EventHandler::IsScrollingDown()
 {
     if (scrollDown == true)
     {
@@ -114,7 +114,7 @@ bool sdl::EventHandler::isScrollingDown()
         return false;
 }
 
-bool sdl::EventHandler::isScrollingUp()
+bool sdl::EventHandler::IsScrollingUp()
 {
     if (scrollUp == true)
     {
@@ -125,12 +125,12 @@ bool sdl::EventHandler::isScrollingUp()
         return false;
 }
 
-bool sdl::EventHandler::inputGetButton(int button)
+bool sdl::EventHandler::InputGetButton(int button)
 {
     return ((_mouse_buttons[button] == State::Held) || _mouse_buttons[button] == Pressed);
 }
 
-bool sdl::EventHandler::inputGetButtonDown(int button)
+bool sdl::EventHandler::InputGetButtonDown(int button)
 {
     if (_mouse_buttons[button] == State::Pressed)
     {
@@ -141,7 +141,7 @@ bool sdl::EventHandler::inputGetButtonDown(int button)
         return false;    
 }
 
-bool sdl::EventHandler::inputGetButtonUp(int button)
+bool sdl::EventHandler::InputGetButtonUp(int button)
 {
     if (_mouse_buttons[button] == State::Released)
     {
