@@ -4,6 +4,7 @@
 
 namespace sdl
 {
+    class Window;
     class EventHandler
     {
         private:
@@ -22,8 +23,9 @@ namespace sdl
 
             static bool scrollUp;
             static bool scrollDown;
-        public:
             static bool isClosed;
+            friend class Window;
+        public:
             static void Init();
             static void Update();
             static bool InputGetKey(SDL_Scancode scancode);

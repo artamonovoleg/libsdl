@@ -43,5 +43,7 @@ namespace sdl
             // Set new _r _g _b
             void    SetClearColor(Uint32 color);
             void    SetFullscreenMode();
+
+            bool    ShouldClose();
     };
 }

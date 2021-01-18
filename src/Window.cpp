@@ -1,5 +1,6 @@
 #include "Window.hpp"
 #include "Color.hpp"
+#include "EventHandler.hpp"
 
 sdl::Window::Window(std::string title, int x, int y, int w, int h, Uint32 flag)
 {
@@ -147,4 +148,9 @@ void sdl::Window::SetClearColor(Uint32 color)
 void sdl::Window::SetFullscreenMode()
 {
     SDL_SetWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
+}
+
+bool sdl::Window::ShouldClose()
+{
+    return sdl::EventHandler::isClosed;
 }

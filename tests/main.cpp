@@ -16,7 +16,7 @@ int main()
     window.SetClearColor(0x505050);
 
 
-    while (!sdl::EventHandler::isClosed)
+    while (!window.ShouldClose())
     {
         window.Clear();
         window.DrawText(text);
